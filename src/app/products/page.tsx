@@ -46,7 +46,7 @@ function readPage(params: RawParams, key: string): number {
   return Number.isFinite(value) && value >= 1 ? Math.floor(value) : 1;
 }
 
-const LIMIT = 20;
+const LIMIT = 18;
 
 export default async function ProductsPage({
   searchParams,

@@ -37,13 +37,22 @@ export async function generateMetadata({
     return { title: "Product not found" };
   }
 
+  const title = product.title?.trim() || "Product";
+  const description = product.description?.trim() || "Product details";
+  const images = Array.isArray(product.images)
+    ? product.images.filter(
+        (image): image is string =>
+          typeof image === "string" && image.trim().length > 0,
+      )
+    : [];
+
   return {
-    title: product.title,
-    description: product.description.slice(0, 160),
+    title,
+    description: description.slice(0, 160),
     openGraph: {
-      title: product.title,
-      description: product.description,
-      images: product.images.length > 0 ? [product.images[0]] : undefined,
+      title,
+      description,
+      images: images.length > 0 ? [images[0]] : undefined,
     },
   };
 }
@@ -60,6 +69,9 @@ export default async function ProductPage({
     notFound();
   }
 
+  const category = product.category?.trim() || "";
+  const title = product.title?.trim() || "Product";
+
   return (
     <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
       <Breadcrumbs
@@ -67,10 +79,12 @@ export default async function ProductPage({
           { label: "Home", href: "/" },
           { label: "Products", href: "/products" },
           {
-            label: categoryLabel(product.category),
-            href: `/products?category=${encodeURIComponent(product.category)}`,
+            label: category ? categoryLabel(category) : "Products",
+            href: category
+              ? `/products?category=${encodeURIComponent(category)}`
+              : "/products",
           },
-          { label: product.title },
+          { label: title },
         ]}
       />
 

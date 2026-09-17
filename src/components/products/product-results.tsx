@@ -123,7 +123,7 @@ export function ProductResults({
       </p>
 
       <div
-        className={`grid grid-cols-2 gap-4 transition-opacity sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 ${
+        className={`product-grid-3-cols transition-opacity ${
           isFetching ? "opacity-60" : "opacity-100"
         }`}
       >

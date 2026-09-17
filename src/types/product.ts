@@ -53,3 +53,7 @@ export interface ProductListResponse {
 export interface RelatedProductsResponse {
   products: Product[];
 }
+
+export interface ProductVariantsResponse {
+  products: Product[];
+}

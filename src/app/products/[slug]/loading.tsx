@@ -13,7 +13,7 @@ export default function ProductLoading() {
 
       <div className="mt-16 border-t border-line pt-12">
         <Skeleton className="h-8 w-56" />
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[0, 1, 2, 3].map((i) => (
             <ProductCardSkeleton key={i} />
           ))}

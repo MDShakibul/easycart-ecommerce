@@ -1,6 +1,7 @@
 import type { NextRequest } from "next/server";
 
 import productsData from "@/data/products.json";
+import { isSameProductFamily } from "@/lib/product-family";
 import type { Product } from "@/types/product";
 
 export const dynamic = "force-dynamic";
@@ -28,9 +29,34 @@ export async function GET(
       ? Math.min(MAX_LIMIT, Math.floor(parsed))
       : DEFAULT_LIMIT;
 
-  const related = products
-    .filter((p) => p.slug !== current.slug && p.category === current.category)
-    .sort((a, b) => b.rating - a.rating || b.reviewCount - a.reviewCount)
+  const sortByRating = (a: Product, b: Product) =>
+    b.rating - a.rating || b.reviewCount - a.reviewCount;
+  const family = products
+    .filter(
+      (product) =>
+        product.slug !== current.slug && isSameProductFamily(current, product),
+    )
+    .sort(sortByRating);
+  const category = products
+    .filter(
+      (product) =>
+        product.slug !== current.slug && product.category === current.category,
+    )
+    .sort(sortByRating);
+  const brand = products
+    .filter(
+      (product) =>
+        product.slug !== current.slug && product.brand === current.brand,
+    )
+    .sort(sortByRating);
+
+  const seen = new Set<string>();
+  const related = [...family, ...category, ...brand]
+    .filter((product) => {
+      if (seen.has(product.id)) return false;
+      seen.add(product.id);
+      return true;
+    })
     .slice(0, limit);
 
   return Response.json({ products: related });

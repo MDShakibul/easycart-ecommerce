@@ -16,8 +16,8 @@ export function RelatedProducts({ slug }: { slug: string }) {
     return (
       <section>
         <SectionHeading title="You may also like" />
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-          {[0, 1, 2, 3].map((i) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          {[0, 1, 2].map((i) => (
             <ProductCardSkeleton key={i} />
           ))}
         </div>
@@ -33,10 +33,10 @@ export function RelatedProducts({ slug }: { slug: string }) {
     <section>
       <SectionHeading
         title="You may also like"
-        description="Other products in the same category."
+        description="Family matches appear first, followed by related category and brand products."
       />
-      <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-        {products.map((product) => (
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {products.slice(0, 4).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

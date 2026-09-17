@@ -3,6 +3,7 @@ import type {
   ProductListResponse,
   ProductQueryParams,
   RelatedProductsResponse,
+  ProductVariantsResponse,
 } from "@/types/product";
 
 const BASE_PATH = "/api/products";
@@ -85,5 +86,14 @@ export async function getRelatedProducts(
     `${BASE_PATH}/${encodeURIComponent(slug)}/related${query}`,
   );
   const data = await handleResponse<RelatedProductsResponse>(res);
+  return data.products;
+}
+
+/** Fetches variants only when the API can validate a shared product family. */
+export async function getProductVariants(slug: string): Promise<Product[]> {
+  const res = await fetch(
+    `${BASE_PATH}/${encodeURIComponent(slug)}/variants`,
+  );
+  const data = await handleResponse<ProductVariantsResponse>(res);
   return data.products;
 }

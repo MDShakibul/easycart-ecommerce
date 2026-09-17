@@ -4,7 +4,7 @@ const ITEMS = [
   {
     Icon: Truck,
     title: "Free shipping over $50",
-    detail: "Flat $4.95 below that, dispatched same business day.",
+    detail: "Standard delivery is flat $4.95 below that threshold.",
   },
   {
     Icon: RotateCcw,
@@ -14,7 +14,7 @@ const ITEMS = [
   {
     Icon: ShieldCheck,
     title: "Secure checkout",
-    detail: "Card, PayPal or cash on delivery where supported.",
+    detail: "Card, mobile banking or cash on delivery where available.",
   },
   {
     Icon: Phone,
