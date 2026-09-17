@@ -25,10 +25,10 @@ const SOCIAL_LINKS = [
 ] as const;
 
 const columnHeading =
-  "text-xs font-semibold tracking-wide text-ink uppercase";
+  "text-xs font-semibold tracking-wide text-white uppercase";
 
 const columnLink =
-  "text-sm text-ink-soft transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink rounded";
+  "text-sm text-slate-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded";
 
 function LinkColumn({
   heading,
@@ -57,14 +57,14 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-surface">
+    <footer className="bg-footer text-footer-ink">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-6 border-b border-line py-10 md:grid-cols-2 md:items-center">
+        <div className="grid gap-6 border-b border-white/10 py-10 md:grid-cols-2 md:items-center">
           <div>
-            <h2 className="text-lg font-semibold tracking-tight text-ink">
+            <h2 className="text-lg font-semibold tracking-tight text-white">
               Stay in the loop
             </h2>
-            <p className="mt-1 text-sm text-ink-soft">
+            <p className="mt-1 text-sm text-slate-300">
               New arrivals, restocks and occasional offers. No spam.
             </p>
           </div>
@@ -75,8 +75,8 @@ export function SiteFooter() {
 
         <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Logo />
-            <p className="mt-4 max-w-sm text-sm text-ink-soft">
+            <Logo className="text-white [&_span:last-child]:text-white" />
+            <p className="mt-4 max-w-sm text-sm text-slate-300">
               Everyday essentials across electronics, fashion, home, beauty and
               more — curated, priced fairly, and shipped fast.
             </p>
@@ -85,7 +85,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="flex items-center gap-2 text-ink-soft transition-colors hover:text-ink"
+                  className="flex items-center gap-2 text-slate-300 transition-colors hover:text-white"
                 >
                   <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {CONTACT_EMAIL}
@@ -94,14 +94,14 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
-                  className="flex items-center gap-2 text-ink-soft transition-colors hover:text-ink"
+                  className="flex items-center gap-2 text-slate-300 transition-colors hover:text-white"
                 >
                   <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {CONTACT_PHONE}
                 </a>
               </li>
             </ul>
-            <p className="mt-2 text-xs text-ink-muted">{CONTACT_HOURS}</p>
+            <p className="mt-2 text-xs text-footer-muted">{CONTACT_HOURS}</p>
 
             <ul className="mt-6 flex flex-wrap items-center gap-2">
               {SOCIAL_LINKS.map(({ label, href }) => (
@@ -110,7 +110,7 @@ export function SiteFooter() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-9 items-center rounded-full border border-line-strong px-3.5 text-xs font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                    className="flex h-9 items-center rounded-full border border-white/15 px-3.5 text-xs font-medium text-slate-300 transition-colors hover:border-brand hover:bg-brand hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                   >
                     {label}
                   </a>
@@ -127,14 +127,14 @@ export function SiteFooter() {
           <LinkColumn heading="Company" links={COMPANY_LINKS} />
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-line py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-ink-muted">
+        <div className="flex flex-col gap-4 border-t border-white/10 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-footer-muted">
             © {year} XM Store. All rights reserved.
           </p>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {LEGAL_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-xs text-ink-muted transition-colors hover:text-ink">
+                <Link href={link.href} className="text-xs text-footer-muted transition-colors hover:text-white">
                   {link.label}
                 </Link>
               </li>

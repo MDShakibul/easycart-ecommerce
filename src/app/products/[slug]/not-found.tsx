@@ -27,7 +27,7 @@ export default function ProductNotFound() {
         </p>
         <Link
           href="/products"
-          className="mt-8 flex h-11 items-center rounded-full bg-brand px-6 text-sm font-medium text-brand-ink transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+          className="mt-8 flex h-11 items-center rounded-full bg-brand px-6 text-sm font-medium text-brand-ink shadow-sm shadow-indigo-600/25 transition-all hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
         >
           Browse all products
         </Link>

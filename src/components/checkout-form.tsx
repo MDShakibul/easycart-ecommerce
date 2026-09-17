@@ -99,7 +99,7 @@ export function CheckoutForm() {
         action={
           <Link
             href="/products"
-            className="flex h-11 items-center rounded-full bg-brand px-6 text-sm font-medium text-brand-ink transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+            className="flex h-11 items-center rounded-full bg-brand px-6 text-sm font-medium text-brand-ink transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
           >
             Continue shopping
           </Link>
@@ -117,7 +117,7 @@ export function CheckoutForm() {
         action={
           <Link
             href="/products"
-            className="flex h-11 items-center rounded-full bg-brand px-6 text-sm font-medium text-brand-ink transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+            className="flex h-11 items-center rounded-full bg-brand px-6 text-sm font-medium text-brand-ink transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
           >
             Browse products
           </Link>
@@ -257,12 +257,12 @@ export function CheckoutForm() {
             {PAYMENT_OPTIONS.map((option) => (
               <label
                 key={option.value}
-                className="flex cursor-pointer items-center gap-3 rounded-lg border border-line-strong px-3.5 py-3 text-sm text-ink transition-colors has-checked:border-ink hover:border-ink"
+                className="flex cursor-pointer items-center gap-3 rounded-lg border border-line-strong bg-white px-3.5 py-3 text-sm text-ink transition-colors has-checked:border-brand has-checked:bg-brand-soft/50 has-checked:ring-1 has-checked:ring-brand hover:border-brand"
               >
                 <input
                   type="radio"
                   value={option.value}
-                  className="h-4 w-4 accent-ink"
+                  className="h-4 w-4 accent-brand"
                   {...register("paymentMethod")}
                 />
                 {option.label}

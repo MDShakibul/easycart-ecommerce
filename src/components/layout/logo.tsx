@@ -14,7 +14,7 @@ export function Logo({ className }: { className?: string }) {
       )}
     >
       <span
-        className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-brand-ink"
+        className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand to-brand-hover text-brand-ink shadow-sm shadow-indigo-600/30"
         aria-hidden="true"
       >
         <Zap className="h-4 w-4" />

@@ -10,8 +10,8 @@ export function Select({ className, children, ...props }: SelectProps) {
     <div className="relative">
       <select
         className={cn(
-          "h-11 w-full appearance-none rounded-lg border border-line-strong bg-paper-raised pl-3.5 pr-10 text-sm text-ink",
-          "transition-colors focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10",
+          "h-11 w-full appearance-none rounded-lg border border-line-strong bg-paper-raised pl-3.5 pr-10 text-sm text-ink shadow-sm",
+          "transition-colors focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "aria-[invalid=true]:border-error aria-[invalid=true]:focus:ring-error/20",
           className,

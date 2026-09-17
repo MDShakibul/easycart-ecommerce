@@ -28,7 +28,7 @@ export function ProductRow({
         action={
           <Link
             href={href}
-            className="flex items-center gap-1 text-sm font-medium text-ink-soft transition-colors hover:text-ink"
+            className="flex items-center gap-1 text-sm font-medium text-brand transition-colors hover:text-brand-hover"
           >
             {hrefLabel}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

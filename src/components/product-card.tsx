@@ -25,19 +25,8 @@ function stockState(stock: number): StockState {
 }
 
 const CARD_BUTTON =
-  "flex h-9 w-full items-center justify-center gap-1.5 rounded-full text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:h-10 sm:text-sm";
+  "flex h-9 w-full cursor-pointer items-center justify-center gap-1.5 rounded-full text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper disabled:cursor-not-allowed sm:h-10 sm:text-sm";
 
-/**
- * Product card.
- *
- * TanStack Query owns product data; Redux owns cart state. The add-to-cart
- * button is a sibling of the image link, not a descendant, so there is no
- * nested-interactive markup and no preventDefault needed.
- *
- * Stock is carried by a badge and by the button's disabled state, so the
- * state never depends on colour alone. The design tokens (border-line,
- * bg-paper-raised, text-ink) come from the Phase 1 theme layer.
- */
 export function ProductCard({ product }: { product: Product }) {
   const dispatch = useAppDispatch();
   const cartItem = useAppSelector(selectCartItem(product.id));
@@ -71,13 +60,13 @@ export function ProductCard({ product }: { product: Product }) {
       initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.22, ease: "easeOut" }}
-      className="group flex flex-col overflow-hidden rounded-xl border border-line bg-paper-raised transition-colors hover:border-line-strong focus-within:border-line-strong"
+      className="group flex flex-col overflow-hidden rounded-xl border border-line bg-paper-raised shadow-[0_1px_2px_rgba(15,23,42,0.05)] transition-all hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-[0_12px_32px_-12px_rgba(79,70,229,0.25)] focus-within:border-brand"
       suppressHydrationWarning
     >
       <Link
         href={`/products/${product.slug}`}
         aria-label={product.title}
-        className="relative block aspect-square w-full overflow-hidden bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-inset"
+        className="relative block aspect-square w-full overflow-hidden bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset"
       >
         {image !== undefined && image !== "" ? (
           <Image
@@ -109,7 +98,7 @@ export function ProductCard({ product }: { product: Product }) {
 
         <Link
           href={`/products/${product.slug}`}
-          className="line-clamp-2 text-sm font-semibold text-ink transition-colors hover:text-ink-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink sm:text-[15px]"
+          className="line-clamp-2 text-sm font-semibold text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:text-[15px]"
         >
           {product.title}
         </Link>
@@ -127,7 +116,7 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
 
         <div className="mt-auto flex items-baseline justify-between gap-2 pt-1">
-          <p className="text-base font-bold text-ink sm:text-lg">
+          <p className="text-base font-bold text-brand sm:text-lg">
             {formatPrice(product.price)}
           </p>
           {cartItem !== undefined && (
@@ -152,7 +141,7 @@ export function ProductCard({ product }: { product: Product }) {
             added
               ? "bg-success text-white"
               : inStock
-                ? "bg-brand text-brand-ink hover:bg-brand/90"
+                ? "bg-brand text-brand-ink shadow-sm shadow-indigo-600/25 hover:bg-brand-hover hover:shadow-md hover:shadow-indigo-600/30"
                 : "cursor-not-allowed bg-surface text-ink-muted"
           }`}
         >

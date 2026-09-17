@@ -44,7 +44,7 @@ export function CartView() {
         action={
           <Link
             href="/products"
-            className="flex h-11 items-center rounded-full bg-brand px-6 text-sm font-medium text-brand-ink transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+            className="flex h-11 items-center rounded-full bg-brand px-6 text-sm font-medium text-brand-ink transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
           >
             Start shopping
           </Link>
@@ -165,7 +165,7 @@ export function CartView() {
 
         <Link
           href="/checkout"
-          className="mt-6 flex h-12 w-full items-center justify-center rounded-full bg-brand text-sm font-medium text-brand-ink transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper-raised"
+          className="mt-6 flex h-12 w-full items-center justify-center rounded-full bg-brand text-sm font-medium text-brand-ink transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper-raised"
         >
           Proceed to checkout
         </Link>

@@ -111,7 +111,7 @@ export function ProductDetails({ slug }: { slug: string }) {
   };
 
   const stepButton =
-    "flex h-10 w-10 items-center justify-center text-ink transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:pointer-events-none disabled:opacity-40";
+    "flex h-10 w-10 items-center justify-center text-ink transition-colors hover:bg-brand-soft hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none disabled:opacity-40";
 
   return (
     <>
@@ -147,14 +147,14 @@ export function ProductDetails({ slug }: { slug: string }) {
             </span>
             <a
               href="#reviews"
-              className="rounded text-ink-soft underline underline-offset-4 transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+              className="rounded text-ink-soft underline underline-offset-4 transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               {product.reviewCount}{" "}
               {product.reviewCount === 1 ? "review" : "reviews"}
             </a>
           </div>
 
-          <p className="text-3xl font-bold tracking-tight text-ink">
+          <p className="text-3xl font-bold tracking-tight text-brand">
             {formatPrice(product.price)}
           </p>
 

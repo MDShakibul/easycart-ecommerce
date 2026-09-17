@@ -45,7 +45,7 @@ function PaginationControls({ pagination }: { pagination: PaginationMeta }) {
   }
 
   const navButton =
-    "flex h-10 items-center gap-1 rounded-full border border-line-strong px-4 text-sm font-medium text-ink transition-colors hover:border-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:pointer-events-none disabled:opacity-40";
+    "flex h-10 items-center gap-1 rounded-full border border-line-strong bg-white px-4 text-sm font-medium text-ink shadow-sm transition-colors hover:border-brand hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none disabled:opacity-40";
 
   return (
     <nav
@@ -81,10 +81,10 @@ function PaginationControls({ pagination }: { pagination: PaginationMeta }) {
               aria-label={`Page ${entry}`}
               aria-current={entry === page ? "page" : undefined}
               className={cn(
-                "flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink",
+                "flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand",
                 entry === page
-                  ? "bg-brand text-brand-ink"
-                  : "text-ink-soft hover:bg-surface hover:text-ink",
+                  ? "bg-brand text-brand-ink shadow-sm shadow-indigo-600/30"
+                  : "text-ink-soft hover:bg-brand-soft hover:text-brand",
               )}
             >
               {entry}

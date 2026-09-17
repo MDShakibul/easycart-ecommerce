@@ -242,7 +242,7 @@ export function CartDrawer() {
                     <Link
                       href="/checkout"
                       onClick={close}
-                      className="flex h-11 items-center justify-center rounded-full bg-brand text-sm font-medium text-brand-ink transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                      className="flex h-11 items-center justify-center rounded-full bg-brand text-sm font-medium text-brand-ink transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
                     >
                       Checkout
                     </Link>

@@ -9,7 +9,7 @@ export function SiteHeader() {
   return (
     <>
       <AnnouncementBar />
-      <header className="sticky top-0 z-30 w-full border-b border-line bg-paper/85 backdrop-blur-md">
+      <header className="sticky top-0 z-30 w-full border-b border-line bg-white/90 shadow-[0_1px_12px_rgba(15,23,42,0.06)] backdrop-blur-md">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <MobileHeader />
 

@@ -25,7 +25,11 @@ export function SectionHeading({
       )}
     >
       <div>
-        <Tag className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+        <Tag className="flex items-center gap-2.5 text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+          <span
+            aria-hidden="true"
+            className="h-7 w-1.5 rounded-full bg-gradient-to-b from-brand to-indigo-400"
+          />
           {title}
         </Tag>
         {description && (

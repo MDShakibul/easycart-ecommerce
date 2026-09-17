@@ -51,7 +51,7 @@ export function ListingSearch() {
         placeholder="Search products…"
         value={value}
         onChange={(event) => setValue(event.target.value)}
-        className="h-11 w-full rounded-full border border-line-strong bg-paper-raised pr-10 pl-10 text-sm text-ink transition-colors placeholder:text-ink-muted focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10"
+        className="h-11 w-full rounded-full border border-line-strong bg-paper-raised pr-10 pl-10 text-sm text-ink shadow-sm transition-colors placeholder:text-ink-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
       />
       {value !== "" && (
         <button

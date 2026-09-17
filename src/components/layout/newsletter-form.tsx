@@ -42,12 +42,12 @@ export function NewsletterForm() {
         placeholder="you@example.com"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
-        className="h-11 min-w-0 flex-1 rounded-full border border-line-strong bg-paper-raised px-4 text-sm text-ink transition-colors placeholder:text-ink-muted focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10"
+        className="h-11 min-w-0 flex-1 rounded-full border border-line-strong bg-white px-4 text-sm text-ink shadow-sm transition-colors placeholder:text-ink-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
       />
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-brand px-5 text-sm font-medium text-brand-ink transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:opacity-60"
+        className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-brand px-5 text-sm font-medium text-brand-ink shadow-sm shadow-indigo-600/30 transition-all hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-footer disabled:opacity-60"
       >
         {status === "submitting" ? (
           <>

@@ -1,39 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #ffffff;
+  --paper: #f8fafc;
   --paper-raised: #ffffff;
-  --surface: #f4f4f5;
-  --line: #e4e4e7;
-  --line-strong: #d4d4d8;
-  --ink: #09090b;
-  --ink-soft: #52525b;
-  --ink-muted: #a1a1aa;
-  --brand: #09090b;
-  --brand-ink: #fafafa;
-  --sale: #dc2626;
-  --success: #15803d;
-  --warning: #b45309;
-  --error: #dc2626;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #09090b;
-    --paper-raised: #18181b;
-    --surface: #18181b;
-    --line: #27272a;
-    --line-strong: #3f3f46;
-    --ink: #fafafa;
-    --ink-soft: #a1a1aa;
-    --ink-muted: #71717a;
-    --brand: #fafafa;
-    --brand-ink: #09090b;
-    --sale: #f87171;
-    --success: #4ade80;
-    --warning: #fbbf24;
-    --error: #f87171;
-  }
+  --surface: #f1f5f9;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --ink: #0f172a;
+  --ink-soft: #64748b;
+  --ink-muted: #94a3b8;
+  --brand: #4f46e5;
+  --brand-hover: #4338ca;
+  --brand-soft: #eef2ff;
+  --brand-ink: #ffffff;
+  --sale: #ef4444;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --footer: #0f172a;
+  --footer-ink: #f1f5f9;
+  --footer-muted: #94a3b8;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -46,11 +33,16 @@
   --color-ink-soft: var(--ink-soft);
   --color-ink-muted: var(--ink-muted);
   --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
   --color-brand-ink: var(--brand-ink);
   --color-sale: var(--sale);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
+  --color-footer: var(--footer);
+  --color-footer-ink: var(--footer-ink);
+  --color-footer-muted: var(--footer-muted);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -65,11 +57,46 @@ body {
   color: var(--ink);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  background-image:
+    radial-gradient(60rem 24rem at 85% -6rem, rgba(79, 70, 229, 0.08), transparent 60%),
+    radial-gradient(48rem 20rem at -10% 8rem, rgba(79, 70, 229, 0.06), transparent 60%);
+  background-attachment: fixed;
 }
 
 ::selection {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--brand);
+  color: #fff;
+}
+
+/* Show pointer cursor on Add to cart and all clickable buttons */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Slim, tinted scrollbar to match the palette */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4f46e5 #f1f5f9;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+*::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 999px;
+  border: 2px solid #f1f5f9;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
 }
 
 @media (prefers-reduced-motion: reduce) {

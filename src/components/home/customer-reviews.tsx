@@ -22,7 +22,7 @@ export function CustomerReviews() {
         {reviews.map((review) => (
           <li
             key={review.id}
-            className="flex flex-col rounded-xl border border-line bg-paper-raised p-6"
+            className="flex flex-col rounded-xl border border-line bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.05)] transition-shadow hover:shadow-[0_12px_32px_-12px_rgba(79,70,229,0.2)]"
           >
             <div className="flex items-center gap-1" aria-label={`${review.rating} out of 5 stars`}>
               {Array.from({ length: 5 }, (_, i) => (
@@ -45,7 +45,7 @@ export function CustomerReviews() {
               <p className="text-sm font-medium text-ink">{review.author}</p>
               <Link
                 href={`/products/${review.productSlug}`}
-                className="mt-0.5 line-clamp-1 text-xs text-ink-muted transition-colors hover:text-ink"
+                className="mt-0.5 line-clamp-1 text-xs text-ink-muted transition-colors hover:text-brand"
               >
                 on {review.productTitle}
               </Link>
