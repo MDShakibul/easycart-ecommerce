@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Star } from "lucide-react";
 
 import { formatPrice } from "@/lib/format";
 import { getTopRatedProduct } from "@/lib/home";
@@ -48,7 +49,43 @@ export function PromoBanner() {
         <div
           className="hidden bg-white/10 lg:block"
           aria-hidden="true"
-        />
+        >
+          <Link
+            href={`/products/${hero.slug}`}
+            className="group relative block overflow-hidden  border border-line bg-white shadow-[0_20px_60px_-20px_rgba(79,70,229,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          >
+            <div className="relative aspect-4/3 w-full overflow-hidden bg-surface">
+              <Image
+                src={hero.images[0]}
+                alt={hero.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                priority
+              />
+            </div>
+            <div className="flex items-center justify-between gap-4 border-t border-line p-4">
+              <div className="min-w-0">
+                <p className="text-xs font-medium tracking-wide text-ink-muted uppercase">
+                  Top rated
+                </p>
+                <p className="mt-0.5 truncate font-semibold text-ink">
+                  {hero.title}
+                </p>
+              </div>
+              <div className="shrink-0 text-right">
+                <p className="flex items-center justify-end gap-1 text-sm font-medium text-ink-soft">
+                  <Star
+                    className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
+                    aria-hidden="true"
+                  />
+                  {hero.rating.toFixed(1)}
+                </p>
+                <p className="font-bold text-brand">{formatPrice(hero.price)}</p>
+              </div>
+            </div>
+          </Link>
+      </div>
       </div>
     </section>
   );

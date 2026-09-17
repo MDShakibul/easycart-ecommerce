@@ -32,15 +32,15 @@ const checkoutSchema = z.object({
     .regex(/^[0-9+()\-\s]{7,20}$/, "Enter a valid phone number"),
   address: z.string().trim().min(5, "Enter your street address"),
   city: z.string().trim().min(2, "Enter your city"),
-  postalCode: z.string().trim().min(3, "Enter your postal code"),
-  paymentMethod: z.enum(["card", "paypal", "cod"]),
+  postalCode: z.string().trim().min(3, "Enter your postal code min 3 digit"),
+  paymentMethod: z.enum(["card", "mobile_banking", "cod"]),
 });
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 const PAYMENT_OPTIONS = [
   { value: "card", label: "Credit / Debit card" },
-  { value: "paypal", label: "PayPal" },
+  { value: "mobile_banking", label: "Bkash / Nagad / Any Other" },
   { value: "cod", label: "Cash on delivery" },
 ] as const;
 
@@ -53,13 +53,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
   );
 }
 
-/**
- * Checkout form.
- *
- * React Hook Form owns form state and submission; Zod owns validation; Redux
- * supplies the cart and is cleared on success. Nothing from the form goes into
- * Redux, and no product data is copied out of TanStack Query into it.
- */
+
 export function CheckoutForm() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectCartItems);

@@ -23,5 +23,5 @@ export const LEGAL_LINKS: FooterLink[] = [
 ];
 
 export const CONTACT_EMAIL = "support@easycart.example";
-export const CONTACT_PHONE = "+1 (555) 012-3456";
-export const CONTACT_HOURS = "Monday to Friday, 9:00–18:00";
+export const CONTACT_PHONE = "(+880) 1992 843621 ";
+export const CONTACT_HOURS = "Monday to Friday, 9:00 AM–08:00 PM";

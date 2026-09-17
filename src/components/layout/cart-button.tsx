@@ -3,35 +3,34 @@
 import { ShoppingCart } from "lucide-react";
 
 import { useCartDrawer } from "@/features/cart/cart-drawer-context";
-import { selectCartItemCount } from "@/features/cart/cartSelectors";
+import {
+  selectCartItemCount,
+  selectCartTotal,
+} from "@/features/cart/cartSelectors";
+import { formatPrice } from "@/lib/format";
 import { useAppSelector } from "@/store/hooks";
 
 /**
- * Header cart trigger. Opens the drawer rather than navigating — the drawer
- * links through to the full `/cart` page, so both paths stay reachable.
+ * Header cart trigger — always renders as a pill showing item count + total.
+ * Opens the cart drawer; the drawer links through to the full `/cart` page.
  */
 export function CartButton() {
   const itemCount = useAppSelector(selectCartItemCount);
+  const total = useAppSelector(selectCartTotal);
   const { open } = useCartDrawer();
 
   return (
     <button
       type="button"
       onClick={open}
-      aria-label={
-        itemCount > 0 ? `Open cart, ${itemCount} items` : "Open cart"
-      }
-      className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-slate-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+      aria-label={`Open cart, ${itemCount} ${itemCount === 1 ? "item" : "items"}, total ${formatPrice(total)}`}
+      className="flex h-9 shrink-0 items-center gap-2.5 rounded-full border border-slate-400/40 bg-white/10 px-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-slate-300/60 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
     >
-      <ShoppingCart className="h-5 w-5" aria-hidden="true" />
-      {itemCount > 0 && (
-        <span
-          aria-hidden="true"
-          className="absolute top-0.5 right-0.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-brand px-1 text-[10px] font-bold text-brand-ink shadow-sm shadow-indigo-600/40"
-        >
-          {itemCount > 99 ? "99+" : itemCount}
-        </span>
-      )}
+      <span className="whitespace-nowrap">
+        {itemCount} {itemCount === 1 ? "item" : "item(s)"} &mdash;{" "}
+        {formatPrice(total)}
+      </span>
+      <ShoppingCart className="h-4 w-4 shrink-0" aria-hidden="true" />
     </button>
   );
 }
