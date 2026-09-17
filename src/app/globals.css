@@ -81,7 +81,7 @@ button:disabled {
 /* Slim, tinted scrollbar to match the palette */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #4f46e5 #f1f5f9;
+  scrollbar-color: #cbd5e1 #f1f5f9;
 }
 *::-webkit-scrollbar {
   width: 10px;
@@ -91,12 +91,12 @@ button:disabled {
   background: #f1f5f9;
 }
 *::-webkit-scrollbar-thumb {
-  background: #4f46e5;
+  background: #cbd5e1;
   border-radius: 999px;
   border: 2px solid #f1f5f9;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: #4f46e5;
+  background: #94a3b8;
 }
 
 @media (prefers-reduced-motion: reduce) {

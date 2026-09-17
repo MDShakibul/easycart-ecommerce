@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const trending = getTrendingProducts(8);
-  const newArrivals = getNewArrivals(8);
+  const trending = getTrendingProducts(6);
+  const newArrivals = getNewArrivals(6);
 
   return (
     <main className="flex flex-1 flex-col">
