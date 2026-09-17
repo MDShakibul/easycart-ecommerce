@@ -2,7 +2,7 @@
 export const PRODUCT_CATEGORIES = [
   "electronics",
   "fashion",
-  "home",
+  "home decoration",
   "beauty",
   "sports",
   "books",

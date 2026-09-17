@@ -28,7 +28,7 @@ export function FeaturedCategories() {
         {categories.map((category) => (
           <li key={category.slug}>
             <Link
-              href={`/products?category=${category.slug}`}
+              href={`/products?category=${encodeURIComponent(category.slug)}`}
               className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white shadow-[0_1px_2px_rgba(15,23,42,0.05)] transition-all hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-[0_12px_32px_-12px_rgba(79,70,229,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface">

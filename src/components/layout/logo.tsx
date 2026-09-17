@@ -7,9 +7,9 @@ export function Logo({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      aria-label="XM Store, home"
+      aria-label="Easy Cart, home"
       className={cn(
-        "flex shrink-0 items-center gap-2 text-lg font-bold tracking-tight text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper",
+        "flex shrink-0 items-center gap-2 text-lg font-bold tracking-tight text-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
         className,
       )}
     >
@@ -19,7 +19,7 @@ export function Logo({ className }: { className?: string }) {
       >
         <Zap className="h-4 w-4" />
       </span>
-      <span className="hidden sm:inline">XM Store</span>
+      <span className="hidden sm:inline">Easy Cart</span>
     </Link>
   );
 }

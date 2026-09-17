@@ -27,7 +27,7 @@ export function TrustProps() {
   return (
     <section className="border-y border-line bg-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <h2 className="sr-only">Why shop with XM Store</h2>
+        <h2 className="sr-only">Why shop with Easy Cart</h2>
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROPS.map(({ Icon, title, description }) => (
             <li key={title} className="flex gap-3">

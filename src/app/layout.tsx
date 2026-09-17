@@ -23,8 +23,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "XM Store",
-    template: "%s | XM Store",
+    default: "Easy Cart",
+    template: "%s | Easy Cart",
   },
   description: "Shop the latest electronics, fashion, home goods, and more.",
 };

@@ -9,7 +9,7 @@ import { TrustProps } from "@/components/home/trust-props";
 import { getNewArrivals, getTrendingProducts } from "@/lib/home";
 
 export const metadata: Metadata = {
-  title: "XM Store — Shop Everything",
+  title: "Easy Cart — Shop Everything",
   description:
     "A curated catalogue across electronics, fashion, home, beauty, sports and more. Real stock counts, honest reviews, fast shipping.",
 };

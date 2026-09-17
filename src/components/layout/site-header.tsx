@@ -9,19 +9,19 @@ export function SiteHeader() {
   return (
     <>
       <AnnouncementBar />
-      <header className="sticky top-0 z-30 w-full border-b border-line bg-white/90 shadow-[0_1px_12px_rgba(15,23,42,0.06)] backdrop-blur-md">
+      <header className="sticky top-0 z-30 w-full border-b border-white/10 bg-footer shadow-[0_1px_12px_rgba(0,0,0,0.3)]">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <MobileHeader />
 
           <div className="hidden lg:block">
             <div className="flex h-16 items-center gap-8">
-              <Logo />
+              <Logo className="text-white" />
               <div className="flex-1">
                 <HeaderSearch className="max-w-xl" />
               </div>
               <CartButton />
             </div>
-            <div className="border-t border-line">
+            <div className="border-t border-white/10">
               <DesktopNav />
             </div>
           </div>

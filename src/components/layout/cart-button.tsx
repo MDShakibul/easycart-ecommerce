@@ -21,7 +21,7 @@ export function CartButton() {
       aria-label={
         itemCount > 0 ? `Open cart, ${itemCount} items` : "Open cart"
       }
-      className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-brand-soft hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+      className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-slate-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
     >
       <ShoppingCart className="h-5 w-5" aria-hidden="true" />
       {itemCount > 0 && (

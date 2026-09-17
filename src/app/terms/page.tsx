@@ -5,14 +5,14 @@ import { InfoPage } from "@/components/layout/info-page";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "The terms that govern your use of the XM Store website and your purchases.",
+    "The terms that govern your use of the Easy Cart website and your purchases.",
 };
 
 export default function TermsPage() {
   return (
     <InfoPage
       title="Terms of Service"
-      description="The agreement between you and XM Store when you use this site."
+      description="The agreement between you and Easy Cart when you use this site."
       updated="September 16, 2026"
       sections={[
         {

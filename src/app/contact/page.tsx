@@ -6,7 +6,7 @@ import { CONTACT_EMAIL, CONTACT_HOURS, CONTACT_PHONE } from "@/lib/footer";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with the XM Store team about orders, shipping, returns or partnerships.",
+    "Get in touch with the Easy Cart team about orders, shipping, returns or partnerships.",
 };
 
 export default function ContactPage() {

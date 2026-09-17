@@ -5,7 +5,7 @@ import { InfoPage } from "@/components/layout/info-page";
 export const metadata: Metadata = {
   title: "Shipping & Delivery",
   description:
-    "Processing times, delivery options, costs and tracking for XM Store orders.",
+    "Processing times, delivery options, costs and tracking for Easy Cart orders.",
 };
 
 export default function ShippingPage() {

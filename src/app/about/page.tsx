@@ -5,7 +5,7 @@ import { InfoPage } from "@/components/layout/info-page";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "XM Store is a curated online retailer offering everyday essentials across electronics, fashion, home and more.",
+    "Easy Cart is a curated online retailer offering everyday essentials across electronics, fashion, home and more.",
 };
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
         {
           heading: "Our story",
           body: [
-            "XM Store started with a simple frustration: shopping online had become noisy. Too many near-identical listings, too many inflated discounts, too little information about what you were actually buying.",
+            "Easy Cart started with a simple frustration: shopping online had become noisy. Too many near-identical listings, too many inflated discounts, too little information about what you were actually buying.",
             "We built the opposite. A smaller, deliberately chosen range across electronics, fashion, home, beauty, sports, books, toys and grocery — each item picked because it earns its place, not because it fills a category page.",
           ],
         },

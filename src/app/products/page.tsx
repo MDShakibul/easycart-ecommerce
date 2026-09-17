@@ -15,7 +15,7 @@ import { categoryLabel } from "@/lib/categories";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Browse the full XM Store catalogue. Filter by category, price and rating, then sort to find exactly what you need.",
+    "Browse the full Easy Cart catalogue. Filter by category, price and rating, then sort to find exactly what you need.",
 };
 
 type RawParams = { [key: string]: string | string[] | undefined };

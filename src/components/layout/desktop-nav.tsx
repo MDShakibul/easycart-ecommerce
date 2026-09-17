@@ -10,7 +10,7 @@ export function DesktopNav() {
           <li key={item.href}>
             <Link
               href={item.href}
-              className="flex h-11 items-center rounded-full px-3.5 text-sm font-medium whitespace-nowrap text-ink-soft transition-colors hover:bg-brand-soft hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              className="flex h-11 items-center rounded-full px-3.5 text-sm font-medium whitespace-nowrap text-slate-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               {item.label}
             </Link>

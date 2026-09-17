@@ -68,7 +68,7 @@ export default async function ProductPage({
           { label: "Products", href: "/products" },
           {
             label: categoryLabel(product.category),
-            href: `/products?category=${product.category}`,
+            href: `/products?category=${encodeURIComponent(product.category)}`,
           },
           { label: product.title },
         ]}

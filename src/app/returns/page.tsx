@@ -5,7 +5,7 @@ import { InfoPage } from "@/components/layout/info-page";
 export const metadata: Metadata = {
   title: "Returns & Refunds",
   description:
-    "How to return an item to XM Store, what qualifies, and when to expect your refund.",
+    "How to return an item to Easy Cart, what qualifies, and when to expect your refund.",
 };
 
 export default function ReturnsPage() {

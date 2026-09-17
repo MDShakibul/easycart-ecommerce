@@ -5,7 +5,7 @@ import { InfoPage } from "@/components/layout/info-page";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Answers to common questions about ordering, shipping, returns and payment at XM Store.",
+    "Answers to common questions about ordering, shipping, returns and payment at Easy Cart.",
 };
 
 export default function FaqPage() {

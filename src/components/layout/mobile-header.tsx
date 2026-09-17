@@ -10,6 +10,9 @@ import { HeaderSearch } from "@/components/layout/header-search";
 import { Logo } from "@/components/layout/logo";
 import { CATEGORY_NAV } from "@/lib/navigation";
 
+const iconButtonDark =
+  "flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-slate-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand";
+
 const iconButton =
   "flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-surface hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink";
 
@@ -30,19 +33,19 @@ export function MobileHeader() {
           aria-label="Open menu"
           aria-haspopup="dialog"
           aria-expanded={menuOpen}
-          className={iconButton}
+          className={iconButtonDark}
         >
           <Menu className="h-5 w-5" aria-hidden="true" />
         </button>
 
-        <Logo className="mx-auto" />
+        <Logo className="mx-auto text-white" />
 
         <button
           type="button"
           onClick={() => setSearchOpen((open) => !open)}
           aria-label={searchOpen ? "Close search" : "Open search"}
           aria-expanded={searchOpen}
-          className={iconButton}
+          className={iconButtonDark}
         >
           {searchOpen ? (
             <X className="h-5 w-5" aria-hidden="true" />
@@ -96,7 +99,7 @@ export function MobileHeader() {
               className="fixed inset-y-0 left-0 z-50 flex h-full w-[85%] max-w-sm flex-col bg-paper shadow-xl"
             >
               <div className="flex h-16 shrink-0 items-center justify-between border-b border-line px-4">
-                <Logo />
+                <Logo className="text-ink" />
                 <button
                   type="button"
                   onClick={() => setMenuOpen(false)}
@@ -111,6 +114,13 @@ export function MobileHeader() {
                 aria-label="Product categories"
                 className="flex-1 overflow-y-auto p-4"
               >
+                <Link
+                  href="/"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex h-11 items-center rounded-lg px-3 text-sm font-semibold text-ink transition-colors hover:bg-surface"
+                >
+                  Home
+                </Link>
                 <Link
                   href="/products"
                   onClick={() => setMenuOpen(false)}

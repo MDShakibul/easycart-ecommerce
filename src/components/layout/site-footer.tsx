@@ -129,7 +129,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-footer-muted">
-            © {year} XM Store. All rights reserved.
+            © {year} Easy Cart. All rights reserved.
           </p>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {LEGAL_LINKS.map((link) => (

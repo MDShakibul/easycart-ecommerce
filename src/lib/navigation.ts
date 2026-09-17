@@ -7,7 +7,7 @@ export interface NavItem {
 }
 
 export function categoryHref(category: string): string {
-  return `/products?category=${category}`;
+  return `/products?category=${encodeURIComponent(category)}`;
 }
 
 /** Every category in the dataset — used by the mobile drawer. */
@@ -19,13 +19,14 @@ export const CATEGORY_NAV: NavItem[] = PRODUCT_CATEGORIES.map((category) => ({
 const DESKTOP_CATEGORIES: ProductCategory[] = [
   "electronics",
   "fashion",
-  "home",
+  "home decoration",
   "beauty",
   "sports",
 ];
 
 /** Curated subset that fits the desktop nav bar. */
 export const DESKTOP_NAV: NavItem[] = [
+  { label: "Home", href: "/" },
   { label: "All Products", href: "/products" },
   ...DESKTOP_CATEGORIES.map((category) => ({
     label: categoryLabel(category),

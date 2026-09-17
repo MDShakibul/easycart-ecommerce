@@ -6,7 +6,7 @@ import { CONTACT_EMAIL } from "@/lib/footer";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "What data XM Store collects, how it is used, and the choices available to you.",
+    "What data Easy Cart collects, how it is used, and the choices available to you.",
 };
 
 export default function PrivacyPage() {
