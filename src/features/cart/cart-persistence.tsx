@@ -16,7 +16,11 @@ function isCartItemArray(value: unknown): value is CartItem[] {
         item !== null &&
         typeof item === "object" &&
         typeof (item as CartItem).productId === "string" &&
-        typeof (item as CartItem).quantity === "number",
+        typeof (item as CartItem).quantity === "number" &&
+        // Stock is required for new carts; legacy carts without it are
+        // accepted and normalized (capped) by hydrateCart.
+        ((item as CartItem).stock === undefined ||
+          typeof (item as CartItem).stock === "number"),
     )
   );
 }

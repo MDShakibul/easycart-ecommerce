@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
+import { ShoppingBag, Trash2, X } from "lucide-react";
 import { useEffect } from "react";
 import { AnimatePresence, m, useReducedMotion } from "motion/react";
 
 import { Button } from "@/components/ui/button";
+import { QuantityStepper } from "@/components/ui/quantity-stepper";
 import { useCartDrawer } from "@/features/cart/cart-drawer-context";
 import {
   selectCartItemCount,
@@ -17,12 +18,10 @@ import {
   decreaseQuantity,
   increaseQuantity,
   removeItem,
+  setQuantity,
 } from "@/features/cart/cartSlice";
 import { formatPrice } from "@/lib/format";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-
-const STEP =
-  "flex h-8 w-8 items-center justify-center text-ink transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:pointer-events-none disabled:opacity-40";
 
 /**
  * Cart drawer (Phase 9).
@@ -186,34 +185,33 @@ export function CartDrawer() {
                             {formatPrice(item.price)} each
                           </p>
 
-                          <div className="mt-auto flex items-center justify-between pt-2">
-                            <div className="flex items-center rounded-full border border-line-strong">
-                              <button
-                                type="button"
-                                onClick={() =>
+                          <div className="mt-auto flex items-center justify-between gap-2 pt-2">
+                            <div className="flex flex-col gap-0.5">
+                              <QuantityStepper
+                                value={item.quantity}
+                                max={item.stock}
+                                onDecrement={() =>
                                   dispatch(decreaseQuantity(item.productId))
                                 }
-                                aria-label={`Decrease quantity of ${item.title}`}
-                                className={`${STEP} rounded-l-full`}
-                              >
-                                <Minus className="h-3.5 w-3.5" aria-hidden="true" />
-                              </button>
-                              <span
-                                className="w-8 text-center text-sm font-medium text-ink"
-                                aria-live="polite"
-                              >
-                                {item.quantity}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() =>
+                                onIncrement={() =>
                                   dispatch(increaseQuantity(item.productId))
                                 }
-                                aria-label={`Increase quantity of ${item.title}`}
-                                className={`${STEP} rounded-r-full`}
-                              >
-                                <Plus className="h-3.5 w-3.5" aria-hidden="true" />
-                              </button>
+                                onCommit={(quantity) =>
+                                  dispatch(
+                                    setQuantity({
+                                      productId: item.productId,
+                                      quantity,
+                                    }),
+                                  )
+                                }
+                                itemLabel={item.title}
+                                size="sm"
+                              />
+                              <span className="pl-1 text-[11px] text-ink-muted">
+                                {item.quantity >= item.stock
+                                  ? "Max available"
+                                  : `${item.stock} available`}
+                              </span>
                             </div>
                             <p className="text-sm font-bold text-ink">
                               {formatPrice(item.price * item.quantity)}

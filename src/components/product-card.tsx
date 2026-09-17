@@ -47,6 +47,7 @@ export function ProductCard({ product }: { product: Product }) {
         title: product.title,
         price: product.price,
         image: image ?? "",
+        stock: product.stock,
         quantity: 1,
       }),
     );

@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { ShoppingBag, Trash2 } from "lucide-react";
 import { AnimatePresence, m, useReducedMotion } from "motion/react";
 
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
+import { QuantityStepper } from "@/components/ui/quantity-stepper";
 import {
   selectCartItemCount,
   selectCartItems,
@@ -17,12 +18,10 @@ import {
   decreaseQuantity,
   increaseQuantity,
   removeItem,
+  setQuantity,
 } from "@/features/cart/cartSlice";
 import { formatPrice } from "@/lib/format";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-
-const STEP =
-  "flex h-9 w-9 items-center justify-center text-ink transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink";
 
 /**
  * Full cart page. Everything comes from Redux selectors — no local cart
@@ -104,30 +103,28 @@ export function CartView() {
                   {formatPrice(item.price)} each
                 </p>
 
-                <div className="mt-auto flex items-center justify-between pt-3">
-                  <div className="flex items-center rounded-full border border-line-strong">
-                    <button
-                      type="button"
-                      onClick={() => dispatch(decreaseQuantity(item.productId))}
-                      aria-label={`Decrease quantity of ${item.title}`}
-                      className={`${STEP} rounded-l-full`}
-                    >
-                      <Minus className="h-4 w-4" aria-hidden="true" />
-                    </button>
-                    <span
-                      className="w-9 text-center text-sm font-medium text-ink"
-                      aria-live="polite"
-                    >
-                      {item.quantity}
+                <div className="mt-auto flex items-center justify-between gap-3 pt-3">
+                  <div className="flex flex-col gap-1">
+                    <QuantityStepper
+                      value={item.quantity}
+                      max={item.stock}
+                      onDecrement={() =>
+                        dispatch(decreaseQuantity(item.productId))
+                      }
+                      onIncrement={() =>
+                        dispatch(increaseQuantity(item.productId))
+                      }
+                      onCommit={(quantity) =>
+                        dispatch(setQuantity({ productId: item.productId, quantity }))
+                      }
+                      itemLabel={item.title}
+                      size="md"
+                    />
+                    <span className="pl-1 text-[11px] text-ink-muted">
+                      {item.quantity >= item.stock
+                        ? "Max available"
+                        : `${item.stock} available`}
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => dispatch(increaseQuantity(item.productId))}
-                      aria-label={`Increase quantity of ${item.title}`}
-                      className={`${STEP} rounded-r-full`}
-                    >
-                      <Plus className="h-4 w-4" aria-hidden="true" />
-                    </button>
                   </div>
                   <p className="font-bold text-ink">
                     {formatPrice(item.price * item.quantity)}

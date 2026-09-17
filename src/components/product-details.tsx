@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Minus, Plus, ShoppingCart, Star } from "lucide-react";
+import { Check, ShoppingCart, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,6 +10,7 @@ import { ReviewSummary } from "@/components/product/review-summary";
 import { TrustInfo } from "@/components/product/trust-info";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { QuantityStepper } from "@/components/ui/quantity-stepper";
 import { useToast } from "@/components/ui/toast";
 import { selectCartItem } from "@/features/cart/cartSelectors";
 import { addItem } from "@/features/cart/cartSlice";
@@ -19,7 +20,6 @@ import { formatPrice } from "@/lib/format";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 const LOW_STOCK_THRESHOLD = 5;
-const MAX_PER_ORDER = 10;
 
 /**
  * Product details.
@@ -70,11 +70,16 @@ export function ProductDetails({ slug }: { slug: string }) {
 
   const inStock = product.stock > 0;
   const lowStock = inStock && product.stock <= LOW_STOCK_THRESHOLD;
-  const maxQuantity = Math.max(1, Math.min(product.stock, MAX_PER_ORDER));
+  // The selectable quantity is capped by availability, accounting for what
+  // is already in the cart so the combined total never exceeds stock.
+  const inCartQty = cartItem?.quantity ?? 0;
+  const remaining = Math.max(0, product.stock - inCartQty);
+  const maxQuantity = Math.max(1, remaining);
   const image = product.images[0] ?? "";
 
   const handleAddToCart = () => {
-    if (!inStock || added) return;
+    if (!inStock || added || remaining === 0) return;
+    const addedQty = Math.min(quantity, remaining);
     dispatch(
       addItem({
         productId: product.id,
@@ -82,15 +87,14 @@ export function ProductDetails({ slug }: { slug: string }) {
         title: product.title,
         price: product.price,
         image,
-        quantity,
+        stock: product.stock,
+        quantity: addedQty,
       }),
     );
     setQuantity(1);
     setAdded(true);
     toast(
-      quantity === 1
-        ? "Added to cart"
-        : `Added ${quantity} to cart`,
+      addedQty === 1 ? "Added to cart" : `Added ${addedQty} to cart`,
     );
     setTimeout(() => setAdded(false), 2000);
   };
@@ -104,14 +108,12 @@ export function ProductDetails({ slug }: { slug: string }) {
         title: product.title,
         price: product.price,
         image,
+        stock: product.stock,
         quantity,
       }),
     );
     router.push("/checkout");
   };
-
-  const stepButton =
-    "flex h-10 w-10 items-center justify-center text-ink transition-colors hover:bg-brand-soft hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none disabled:opacity-40";
 
   return (
     <>
@@ -177,43 +179,39 @@ export function ProductDetails({ slug }: { slug: string }) {
             </dd>
           </dl>
 
-          {inStock && (
+          {inStock && remaining > 0 && (
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-ink">Quantity</span>
-              <div className="flex items-center rounded-full border border-line-strong">
-                <button
-                  type="button"
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  disabled={quantity <= 1}
-                  aria-label="Decrease quantity"
-                  className={`${stepButton} rounded-l-full`}
-                >
-                  <Minus className="h-4 w-4" aria-hidden="true" />
-                </button>
-                <span
-                  className="w-10 text-center text-sm font-medium text-ink"
-                  aria-live="polite"
-                >
-                  {quantity}
-                </span>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setQuantity((q) => Math.min(maxQuantity, q + 1))
-                  }
-                  disabled={quantity >= maxQuantity}
-                  aria-label="Increase quantity"
-                  className={`${stepButton} rounded-r-full`}
-                >
-                  <Plus className="h-4 w-4" aria-hidden="true" />
-                </button>
-              </div>
-              {cartItem !== undefined && (
+              <QuantityStepper
+                value={quantity}
+                max={maxQuantity}
+                onDecrement={() => setQuantity((q) => Math.max(1, q - 1))}
+                onIncrement={() =>
+                  setQuantity((q) => Math.min(maxQuantity, q + 1))
+                }
+                onCommit={setQuantity}
+                itemLabel={product.title}
+                size="lg"
+              />
+              {cartItem !== undefined ? (
                 <span className="text-xs text-ink-muted">
-                  {cartItem.quantity} already in cart
+                  {cartItem.quantity} already in cart · {remaining} more
+                  available
+                </span>
+              ) : (
+                <span className="text-xs text-ink-muted">
+                  {product.stock} available
                 </span>
               )}
             </div>
+          )}
+
+          {inStock && remaining === 0 && (
+            <p className="text-sm font-medium text-success">
+              All {product.stock} available{" "}
+              {product.stock === 1 ? "unit is" : "units are"} already in your
+              cart.
+            </p>
           )}
 
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -221,7 +219,7 @@ export function ProductDetails({ slug }: { slug: string }) {
               type="button"
               size="lg"
               onClick={handleAddToCart}
-              disabled={!inStock || added}
+              disabled={!inStock || added || remaining === 0}
               className="flex-1"
             >
               {added ? (
@@ -232,7 +230,11 @@ export function ProductDetails({ slug }: { slug: string }) {
               ) : (
                 <>
                   <ShoppingCart className="h-5 w-5" aria-hidden="true" />
-                  {inStock ? "Add to cart" : "Out of stock"}
+                  {!inStock
+                    ? "Out of stock"
+                    : remaining === 0
+                      ? "Max in cart"
+                      : "Add to cart"}
                 </>
               )}
             </Button>
