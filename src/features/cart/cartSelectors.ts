@@ -3,6 +3,9 @@ import type { RootState } from "@/store";
 /** All items currently in the cart. */
 export const selectCartItems = (state: RootState) => state.cart.items;
 
+/** True once the persisted cart has been rehydrated on the client. */
+export const selectCartIsHydrated = (state: RootState) => state.cart.isHydrated;
+
 /** Total number of individual units across all cart items. */
 export const selectCartItemCount = (state: RootState) =>
   state.cart.items.reduce((sum, item) => sum + item.quantity, 0);

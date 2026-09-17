@@ -11,17 +11,17 @@ import { CheckCircle2, Loader2, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
+  selectCartIsHydrated,
   selectCartItemCount,
   selectCartItems,
   selectCartTotal,
 } from "@/features/cart/cartSelectors";
 import { clearCart } from "@/features/cart/cartSlice";
 import { formatPrice } from "@/lib/format";
+import { getShippingCost } from "@/lib/shipping";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-
-const FREE_SHIPPING_THRESHOLD = 50;
-const SHIPPING_FLAT = 4.95;
 
 const checkoutSchema = z.object({
   fullName: z.string().trim().min(2, "Enter your full name"),
@@ -59,6 +59,7 @@ export function CheckoutForm() {
   const items = useAppSelector(selectCartItems);
   const itemCount = useAppSelector(selectCartItemCount);
   const subtotal = useAppSelector(selectCartTotal);
+  const isHydrated = useAppSelector(selectCartIsHydrated);
   const [submitted, setSubmitted] = useState(false);
 
   const {
@@ -102,6 +103,20 @@ export function CheckoutForm() {
     );
   }
 
+  // Wait for the persisted cart to rehydrate before judging emptiness,
+  // otherwise a saved cart briefly flashes the empty state on a hard load.
+  if (!isHydrated) {
+    return (
+      <div
+        className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-start"
+        aria-hidden="true"
+      >
+        <Skeleton className="h-[28rem] rounded-xl" />
+        <Skeleton className="h-[28rem] rounded-xl" />
+      </div>
+    );
+  }
+
   if (items.length === 0) {
     return (
       <EmptyState
@@ -120,7 +135,7 @@ export function CheckoutForm() {
     );
   }
 
-  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FLAT;
+  const shipping = getShippingCost(subtotal);
   const total = subtotal + shipping;
 
   const labelClass = "mb-1.5 block text-sm font-medium text-ink";

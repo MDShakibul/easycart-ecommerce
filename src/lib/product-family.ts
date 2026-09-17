@@ -6,8 +6,11 @@ export interface ProductFamilyInfo {
   option: string;
 }
 
-function normalize(value: string): string {
-  return value.trim().replace(/\s+/g, " ").toLowerCase();
+/** Minimal shape needed to inspect a product's family — cart items qualify. */
+type FamilySource = { title: string; category?: string; brand?: string };
+
+function normalize(value: string | undefined): string {
+  return (value ?? "").trim().replace(/\s+/g, " ").toLowerCase();
 }
 
 /**
@@ -15,7 +18,7 @@ function normalize(value: string): string {
  * The family is still validated against brand and category by the matcher.
  */
 export function getProductFamilyInfo(
-  product: Pick<Product, "title" | "category" | "brand">,
+  product: FamilySource,
 ): ProductFamilyInfo | null {
   const title = typeof product.title === "string" ? product.title.trim() : "";
   const separator = title.lastIndexOf(",");
@@ -51,7 +54,7 @@ export function isSameProductFamily(
 }
 
 export function getProductVariantLabel(
-  product: Pick<Product, "title" | "category" | "brand">,
+  product: FamilySource,
 ): string | null {
   return getProductFamilyInfo(product)?.option ?? null;
 }

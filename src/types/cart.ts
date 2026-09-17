@@ -11,4 +11,6 @@ export interface CartItem {
 
 export interface CartState {
   items: CartItem[];
+  /** True once the persisted cart has been rehydrated on the client. */
+  isHydrated: boolean;
 }

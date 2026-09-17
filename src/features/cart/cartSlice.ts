@@ -4,6 +4,7 @@ import type { CartItem, CartState } from "@/types/cart";
 
 const initialState: CartState = {
   items: [],
+  isHydrated: false,
 };
 
 /** Clamp a quantity into 1..stock (stock is always at least 1). */
@@ -93,6 +94,7 @@ export const cartSlice = createSlice({
      * longer fits availability.
      */
     hydrateCart(state, action: PayloadAction<CartItem[]>) {
+      state.isHydrated = true;
       state.items = action.payload
         .filter(
           (item) =>
