@@ -21,13 +21,13 @@ export function HomeHero() {
         className="pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-indigo-100/60 blur-3xl"
       />
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
-        <div>
+        <div className="min-w-0">
           <p className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-3.5 py-1.5 text-xs font-medium text-brand shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
             {catalogueSize} products · {categoryCount} categories
           </p>
 
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-balance text-ink sm:text-5xl lg:text-6xl">
             Everyday essentials,
             <br />
             <span className="bg-gradient-to-r from-brand to-indigo-500 bg-clip-text text-transparent">chosen properly.</span>
@@ -41,21 +41,21 @@ export function HomeHero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/products"
-              className="flex h-12 items-center justify-center gap-2 rounded-full bg-brand px-7 text-sm font-medium text-brand-ink shadow-md shadow-indigo-600/25 transition-all hover:bg-brand-hover hover:shadow-lg hover:shadow-indigo-600/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+              className="flex h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full bg-brand px-5 text-sm font-medium text-brand-ink shadow-md shadow-indigo-600/25 transition-all hover:bg-brand-hover hover:shadow-lg hover:shadow-indigo-600/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:w-auto sm:px-7"
             >
               Browse the catalogue
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
               href="/products?sort=newest"
-              className="flex h-12 items-center justify-center rounded-full border border-line-strong bg-white px-7 text-sm font-medium text-ink shadow-sm transition-colors hover:border-brand hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              className="flex h-12 w-full min-w-0 items-center justify-center rounded-full border border-line-strong bg-white px-5 text-sm font-medium text-ink shadow-sm transition-colors hover:border-brand hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-auto sm:px-7"
             >
               New arrivals
             </Link>
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative min-w-0">
           <div
             aria-hidden="true"
             className="absolute -inset-4 rounded-[28px] bg-gradient-to-br from-brand/15 via-indigo-300/20 to-transparent blur-2xl"

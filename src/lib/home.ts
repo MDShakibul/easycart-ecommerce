@@ -1,5 +1,9 @@
 import productsData from "@/data/products.json";
-import { PRODUCT_CATEGORIES, categoryLabel } from "@/lib/categories";
+import {
+  CATEGORY_IMAGES,
+  PRODUCT_CATEGORIES,
+  categoryLabel,
+} from "@/lib/categories";
 import type { Product } from "@/types/product";
 
 const products = productsData as Product[];
@@ -22,7 +26,7 @@ export function getCategorySummaries(): CategorySummary[] {
       slug: category,
       label: categoryLabel(category),
       count: inCategory.length,
-      image: showcase?.images[0] ?? "",
+      image: CATEGORY_IMAGES[category] ?? showcase?.images[0] ?? "",
     };
   }).filter((c) => c.count > 0);
 }
@@ -48,7 +52,7 @@ export function getNewArrivals(limit = 8): Product[] {
 }
 
 export function getTopRatedProduct(): Product {
-  return getTrendingProducts(1)[0];
+  return getTrendingProducts(2)[0];
 }
 
 export interface ShowcasedReview {

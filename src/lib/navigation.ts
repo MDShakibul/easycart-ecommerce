@@ -22,6 +22,9 @@ const DESKTOP_CATEGORIES: ProductCategory[] = [
   "home decoration",
   "beauty",
   "sports",
+  "books",
+  "toys",
+  "grocery",
 ];
 
 /** Curated subset that fits the desktop nav bar. */

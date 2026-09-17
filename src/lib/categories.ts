@@ -12,7 +12,21 @@ export const PRODUCT_CATEGORIES = [
 
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];
 
-/** Human-readable label, e.g. "electronics" -> "Electronics". */
+export const CATEGORY_IMAGES: Record<ProductCategory, string> = {
+  electronics: "/images/categories/electronics.jpg",
+  fashion: "/images/categories/fashion.jpg",
+  "home decoration": "/images/categories/home-decoration.jpg",
+  beauty: "/images/categories/beauty.jpg",
+  sports: "/images/categories/sports.jpg",
+  books: "/images/categories/books.jpg",
+  toys: "/images/categories/toys.jpg",
+  grocery: "/images/categories/grocery.jpg",
+};
+
+
 export function categoryLabel(category: string): string {
-  return category.charAt(0).toUpperCase() + category.slice(1);
+   return category
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 }

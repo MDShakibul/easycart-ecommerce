@@ -6,7 +6,9 @@ import { hydrateCart } from "@/features/cart/cartSlice";
 import { store } from "@/store";
 import type { CartItem } from "@/types/cart";
 
-const STORAGE_KEY = "xm-store-cart";
+// Bumped when the catalogue was replaced (v4): old carts reference product
+// IDs that no longer exist, so they must not rehydrate as ghost items.
+const STORAGE_KEY = "xm-store-cart-v4";
 
 function isCartItemArray(value: unknown): value is CartItem[] {
   return (

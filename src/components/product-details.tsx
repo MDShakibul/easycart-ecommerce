@@ -231,8 +231,8 @@ export function ProductDetails({ slug }: { slug: string }) {
           <p className="text-xs font-semibold tracking-[0.16em] text-ink-muted uppercase">
             {brand}
           </p>
-          <h1 className="mt-3 text-3xl leading-tight font-semibold tracking-tight text-ink sm:text-4xl">
-            {title}
+          <h1 className="mt-3 text-2xl leading-tight font-semibold tracking-tight text-ink sm:text-3xl">
+            {title}s
           </h1>
 
           <button
@@ -311,55 +311,58 @@ export function ProductDetails({ slug }: { slug: string }) {
             </fieldset>
           )}
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-wrap items-center gap-2.5 sm:mt-7 sm:flex-nowrap">
             {canPurchase && (
-              <QuantityStepper
-                value={selectedQuantity}
-                max={maxQuantity}
-                onDecrement={() =>
-                  setQuantity((current) => Math.max(1, current - 1))
-                }
-                onIncrement={() =>
-                  setQuantity((current) =>
-                    Math.min(maxQuantity, current + 1),
-                  )
-                }
-                onCommit={setQuantity}
-                itemLabel={title}
-                size="md"
-                className="self-start bg-paper-raised"
-              />
-            )}
-            <button
-              type="button"
-              onClick={handleAddToCart}
-              disabled={!canPurchase || added}
-              className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-brand px-6 text-sm font-semibold text-white shadow-sm shadow-indigo-600/20 transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-            >
-              {added ? (
-                <>
-                  <Check className="h-4 w-4" aria-hidden="true" />
-                  Added to cart
-                </>
-              ) : (
-                <>
-                  <ShoppingCart className="h-4 w-4" aria-hidden="true" />
-                  {stock === 0
-                    ? "Out of stock"
-                    : remaining === 0
-                      ? "Maximum in cart"
-                      : "Add to cart"}
-                </>
+                <QuantityStepper
+                  value={selectedQuantity}
+                  max={maxQuantity}
+                  onDecrement={() =>
+                    setQuantity((current) => Math.max(1, current - 1))
+                  }
+                  onIncrement={() =>
+                    setQuantity((current) =>
+                      Math.min(maxQuantity, current + 1),
+                    )
+                  }
+                  onCommit={setQuantity}
+                  itemLabel={title}
+                  size="md"
+                  className="h-12 w-[calc(50%-5px)] justify-between bg-paper-raised sm:w-auto"
+                />
               )}
-            </button>
-            <button
-              type="button"
-              onClick={handleBuyNow}
-              disabled={!canPurchase}
-              className="inline-flex h-12 items-center justify-center rounded-full border border-line-strong bg-paper-raised px-6 text-sm font-semibold text-ink transition-colors hover:border-ink hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-            >
-              Buy now
-            </button>
+              <button
+                type="button"
+                onClick={handleAddToCart}
+                disabled={!canPurchase || added}
+                className={cn(
+                  "inline-flex h-12 items-center justify-center gap-2 rounded-full bg-brand px-4 text-sm font-semibold whitespace-nowrap text-white shadow-sm shadow-indigo-600/20 transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 sm:flex-1 sm:px-6",
+                  canPurchase ? "w-[calc(50%-5px)]" : "w-full",
+                )}
+              >
+                {added ? (
+                  <>
+                    <Check className="h-4 w-4" aria-hidden="true" />
+                    Added to cart
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart className="h-4 w-4" aria-hidden="true" />
+                    {stock === 0
+                      ? "Out of stock"
+                      : remaining === 0
+                        ? "Maximum in cart"
+                        : "Add to cart"}
+                  </>
+                )}
+              </button>
+              <button
+                type="button"
+                onClick={handleBuyNow}
+                disabled={!canPurchase}
+                className="inline-flex h-12 w-full items-center justify-center rounded-full border border-line-strong bg-paper-raised px-6 text-sm font-semibold text-ink transition-colors hover:border-ink hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 sm:w-auto sm:px-8"
+              >
+                Buy now
+              </button>
           </div>
 
           {cartItem !== undefined && remaining > 0 && (
