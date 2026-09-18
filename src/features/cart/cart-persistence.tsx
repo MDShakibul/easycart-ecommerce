@@ -37,18 +37,23 @@ function isCartItemArray(value: unknown): value is CartItem[] {
  */
 export function CartPersistence() {
   useEffect(() => {
-    // 1. Rehydrate from storage (guarded — corrupt data is discarded).
+    // 1. Rehydrate from storage (guarded — missing/corrupt data = empty cart).
+    // Always dispatched so `isHydrated` flips even for first-time visitors
+    // with nothing stored; otherwise cart/checkout stay on their loading
+    // skeletons forever until a refresh.
+    let initial: CartItem[] = [];
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (raw !== null) {
         const parsed: unknown = JSON.parse(raw);
         if (isCartItemArray(parsed)) {
-          store.dispatch(hydrateCart(parsed));
+          initial = parsed;
         }
       }
     } catch {
       // Unreadable / corrupt storage — start from an empty cart.
     }
+    store.dispatch(hydrateCart(initial));
 
     // 2. Persist on every subsequent cart change.
     const unsubscribe = store.subscribe(() => {
