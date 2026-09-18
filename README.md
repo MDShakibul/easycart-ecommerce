@@ -37,6 +37,7 @@
 - [Responsive Design & Accessibility](#-responsive-design--accessibility)
 - [Error & Loading States](#-error--loading-states)
 - [Key Engineering Decisions](#-key-engineering-decisions)
+
 ---
 
 ## 🌟 Overview
@@ -44,6 +45,7 @@
 **Easy Cart** is a comprehensive, multi-category e-commerce storefront featuring a **500+ product catalogue**. It delivers a high-performance shopping experience including dynamic search and multifaceted filtering, responsive image galleries with variant selection, a resilient persistent cart with stock clamping, and a type-safe checkout pipeline.
 
 The catalogue spans **8 distinct categories**:
+
 - 📱 Electronics
 - 👗 Fashion
 - 🏠 Home Decoration
@@ -72,10 +74,12 @@ Experience the live storefront deployed on Netlify:
 ## ✨ Key Features
 
 ### 🛍️ Storefront & Merchandising
+
 - **Home Page**: Hero spotlight featuring top-rated items, curated category cards with custom imagery, trending & new-arrival rows, promotional banners, trust signals, and verified customer testimonials.
 - **Content Pages**: Complete static information pages including About, Contact, FAQ, Shipping, Returns, Privacy Policy, Terms, and custom branded 404 & 500 error pages.
 
 ### 🔍 Discovery & Filtering (`/products`)
+
 - **URL-Driven State**: All filter parameters (search keyword, category, price bounds, minimum rating, sorting, and pagination) synchronize directly with the browser URL. Links are shareable and bookmarkable.
 - **Faceted Filtering**: Category counters, price slider/stepper inputs, star rating selectors, and active-filter dismissible chips.
 - **5 Sorting Orders**: Sort by Featured, Price (Low to High), Price (High to Low), Highest Rating, or Newest Arrivals.
@@ -83,6 +87,7 @@ Experience the live storefront deployed on Netlify:
 - **Mobile Filter Drawer**: Slide-over drawer providing full filtering controls on smaller viewports.
 
 ### 📦 Product Detail Pages (`/products/[slug]`)
+
 - **Interactive Gallery**: Thumbnail strip, keyboard navigation (Left/Right arrows), smooth transitions, and broken-image fallbacks.
 - **Smart Variant Selector**: Automatically detects real product families (e.g., color, storage, size suffixes) and lets shoppers switch between siblings seamlessly.
 - **Inventory Awareness**: Stock-managed quantity steppers preventing over-ordering.
@@ -90,27 +95,28 @@ Experience the live storefront deployed on Netlify:
 - **Engagement**: One-click wishlist toggle, native/clipboard sharing, and context-aware related product recommendations.
 
 ### 🛒 Cart & Checkout
+
 - **Dual-Surface Cart**: Full `/cart` page paired with an instant slide-over cart drawer accessible anywhere in the header.
 - **Dynamic Math & Progress**: Live subtotal calculations, free-shipping threshold progress bar, and quantity caps strictly bounded by available stock.
-- **Persistent Storage**: Real-time hydration with `localStorage` (`xm-store-cart-v4`) guarded against schema drift.
+- **Persistent Storage**: Real-time hydration with `localStorage` (`easycart-store`) guarded against schema drift.
 - **Validated Checkout (`/checkout`)**: Form validation powered by **React Hook Form + Zod** supporting Card, Mobile Banking, and Cash on Delivery. Order placement is simulated with instant visual confirmation.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Framework** | **Next.js 16.3.5 (App Router)** | Hybrid rendering (RSC + SSR + SSG), API route handlers, image optimization |
-| **Library** | **React 19.2.8** | Component architecture & modern concurrent primitives |
-| **Language** | **TypeScript 5 (Strict)** | End-to-end type safety across components, store, and APIs |
-| **Styling** | **Tailwind CSS v4** | Modern CSS-variable tokens mapped through `@theme inline` |
-| **Client State** | **Redux Toolkit 2 + React-Redux 9** | Centralized cart state, stock validation, and persistence middleware |
-| **Server State** | **TanStack Query 5** | Data fetching, cache normalization, deduplication, and prefetching |
-| **Forms & Validation** | **React Hook Form 7 + Zod 4** | High-performance uncontrolled forms with schema validation |
-| **Animations** | **Motion (`motion/react`)** | Fluid micro-interactions and drawers with reduced-motion safeguards |
-| **Icons & Typography**| **Lucide React + Geist Fonts** | Crisp iconography and modern web typography |
-| **Package Manager**| **pnpm 12.4.2** | Fast, deterministic dependency resolution |
+| Layer                  | Technology                          | Purpose                                                                    |
+| :--------------------- | :---------------------------------- | :------------------------------------------------------------------------- |
+| **Framework**          | **Next.js 16.3.5 (App Router)**     | Hybrid rendering (RSC + SSR + SSG), API route handlers, image optimization |
+| **Library**            | **React 19.2.8**                    | Component architecture & modern concurrent primitives                      |
+| **Language**           | **TypeScript 5 (Strict)**           | End-to-end type safety across components, store, and APIs                  |
+| **Styling**            | **Tailwind CSS v4**                 | Modern CSS-variable tokens mapped through `@theme inline`                  |
+| **Client State**       | **Redux Toolkit 2 + React-Redux 9** | Centralized cart state, stock validation, and persistence middleware       |
+| **Server State**       | **TanStack Query 5**                | Data fetching, cache normalization, deduplication, and prefetching         |
+| **Forms & Validation** | **React Hook Form 7 + Zod 4**       | High-performance uncontrolled forms with schema validation                 |
+| **Animations**         | **Motion (`motion/react`)**         | Fluid micro-interactions and drawers with reduced-motion safeguards        |
+| **Icons & Typography** | **Lucide React + Geist Fonts**      | Crisp iconography and modern web typography                                |
+| **Package Manager**    | **pnpm 12.4.2**                     | Fast, deterministic dependency resolution                                  |
 
 ---
 
@@ -130,7 +136,7 @@ graph TD
         Service["product.service.ts"]
         Query["TanStack Query Cache<br/>(Catalog, Product, Related, Variants)"]
         Redux["Redux Toolkit Store<br/>(Cart Items, Subtotals, Stock Bounds)"]
-        Local[("localStorage<br/>(xm-store-cart-v4)")]
+        Local[("localStorage<br/>(easycart-store)")]
         URL["URL SearchParams<br/>(?search=&category=&sort=&page=)"]
 
         API --> Service
@@ -207,14 +213,15 @@ src/
 
 All endpoints are hosted as Next.js Route Handlers (`src/app/api/products/`) and operate with `force-dynamic` execution:
 
-| Method | Endpoint | Description | Query Parameters |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/api/products` | Paginated, filtered, and sorted catalogue | `search`, `category`, `minPrice`, `maxPrice`, `rating`, `sort`, `page`, `limit` |
-| `GET` | `/api/products/[slug]` | Single product detail by slug | Returns `404 { error }` if not found |
-| `GET` | `/api/products/[slug]/related` | Contextual recommendations (family → category → brand) | `limit` (default: 8, max: 20) |
-| `GET` | `/api/products/[slug]/variants`| Validated title family variants | Sibling product matches |
+| Method | Endpoint                        | Description                                            | Query Parameters                                                                |
+| :----- | :------------------------------ | :----------------------------------------------------- | :------------------------------------------------------------------------------ |
+| `GET`  | `/api/products`                 | Paginated, filtered, and sorted catalogue              | `search`, `category`, `minPrice`, `maxPrice`, `rating`, `sort`, `page`, `limit` |
+| `GET`  | `/api/products/[slug]`          | Single product detail by slug                          | Returns `404 { error }` if not found                                            |
+| `GET`  | `/api/products/[slug]/related`  | Contextual recommendations (family → category → brand) | `limit` (default: 8, max: 20)                                                   |
+| `GET`  | `/api/products/[slug]/variants` | Validated title family variants                        | Sibling product matches                                                         |
 
 ### Fetch Client Example
+
 ```ts
 // src/services/product.service.ts
 export async function getProducts(
@@ -226,6 +233,7 @@ export async function getProducts(
 ```
 
 ### TanStack Query Configuration
+
 ```ts
 // src/lib/query-client.ts
 staleTime: 60_000,          // 1 minute fresh window
@@ -238,10 +246,10 @@ refetchOnWindowFocus: false // Prevents unwanted layout jumps while shopping
 
 ## ⚖️ Server vs Client Components
 
-| Component Type | Components | Key Responsibility |
-| :--- | :--- | :--- |
-| **Server Components (RSC)** | All `page.tsx` routes, `SiteHeader`, `SiteFooter`, `AnnouncementBar`, `Breadcrumbs`, `HomeHero`, `FeaturedCategories`, `ProductRow`, `FilterSidebar` | Zero client JS footprint; renders fast semantic HTML; computes catalogue logic directly on the server. |
-| **Client Components (`"use client"`)** | `CartView`, `CartDrawer`, `CheckoutForm`, `ProductDetails`, `ImageGallery`, `ProductResults`, `Pagination`, `FilterFacets`, `HeaderSearch`, `Toast` | Handles user input, animations, URL mutation, browser storage, and Redux/Query cache subscriptions. |
+| Component Type                         | Components                                                                                                                                           | Key Responsibility                                                                                     |
+| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| **Server Components (RSC)**            | All `page.tsx` routes, `SiteHeader`, `SiteFooter`, `AnnouncementBar`, `Breadcrumbs`, `HomeHero`, `FeaturedCategories`, `ProductRow`, `FilterSidebar` | Zero client JS footprint; renders fast semantic HTML; computes catalogue logic directly on the server. |
+| **Client Components (`"use client"`)** | `CartView`, `CartDrawer`, `CheckoutForm`, `ProductDetails`, `ImageGallery`, `ProductResults`, `Pagination`, `FilterFacets`, `HeaderSearch`, `Toast`  | Handles user input, animations, URL mutation, browser storage, and Redux/Query cache subscriptions.    |
 
 > [!TIP]
 > Product detail pages (`src/app/products/[slug]/page.tsx`) leverage `generateStaticParams()` with `dynamicParams = false`, compiling all 564 product pages into static HTML ahead of time while guaranteeing genuine HTTP 404 responses for unknown slugs.
@@ -275,12 +283,12 @@ pnpm install
 
 ### Available Scripts
 
-| Command | Action |
-| :--- | :--- |
-| `pnpm dev` | Starts local Next.js development server at [http://localhost:3000](http://localhost:3000) |
-| `pnpm build` | Compiles optimized production bundle and statically builds all 564 product routes |
-| `pnpm start` | Serves the production build locally |
-| `pnpm lint` | Runs ESLint 9 checks across the codebase |
+| Command      | Action                                                                                    |
+| :----------- | :---------------------------------------------------------------------------------------- |
+| `pnpm dev`   | Starts local Next.js development server at [http://localhost:3000](http://localhost:3000) |
+| `pnpm build` | Compiles optimized production bundle and statically builds all 564 product routes         |
+| `pnpm start` | Serves the production build locally                                                       |
+| `pnpm lint`  | Runs ESLint 9 checks across the codebase                                                  |
 
 ---
 
@@ -317,9 +325,8 @@ pnpm install
 
 ## 💡 Key Engineering Decisions
 
-1. **Dedicated State Isolation**: Redux holds *only* cart state. Storing products or filters in Redux was deliberately rejected to eliminate cache synchronization overhead.
+1. **Dedicated State Isolation**: Redux holds _only_ cart state. Storing products or filters in Redux was deliberately rejected to eliminate cache synchronization overhead.
 2. **URL as the Catalogue State**: Encoding search and filter parameters into the query string ensures every filtered search result is shareable and survives full-page refreshes.
 3. **Internal Stock Protection**: Cart increment reducers clamp quantities against product inventory limits, preventing race conditions or manual bypass.
 4. **Unified Business Rules**: Calculations like free shipping thresholds (`≥ $50`, or `$4.95` flat rate in `src/lib/shipping.ts`) are consolidated into pure functions shared across the drawer, cart page, and checkout summary.
 5. **Authentic Product Families**: Variants are derived strictly from proven naming conventions in catalog data rather than fabricated mocks, falling back to related items when families do not exist.
-

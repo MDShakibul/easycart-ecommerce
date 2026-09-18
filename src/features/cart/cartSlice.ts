@@ -88,11 +88,7 @@ export const cartSlice = createSlice({
       state.items = [];
     },
 
-    /**
-     * Replace the whole cart — used by localStorage rehydration (Phase 18).
-     * Normalizes legacy items (missing stock) and clamps anything that no
-     * longer fits availability.
-     */
+
     hydrateCart(state, action: PayloadAction<CartItem[]>) {
       state.isHydrated = true;
       state.items = action.payload

@@ -7,7 +7,7 @@ import { store } from "@/store";
 import type { CartItem } from "@/types/cart";
 
 
-const STORAGE_KEY = "xm-store-cart-v4";
+const STORAGE_KEY = "easycart-store";
 
 function isCartItemArray(value: unknown): value is CartItem[] {
   return (
