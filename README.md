@@ -121,7 +121,7 @@ The application follows the principle of **Single Source of Truth**: each kind o
 ```mermaid
 graph TD
     subgraph Storage & API
-        JSON[("products.json<br/>(564 items)")]
+        JSON[("products.json<br/>(500+ items)")]
         API["Next.js Route Handlers<br/>(/api/products/*)"]
         JSON --> API
     end
