@@ -15,10 +15,7 @@ function Facet({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-/**
- * The three filter facets, shared by the desktop sidebar and the mobile
- * drawer so the two never drift apart.
- */
+
 export function FilterFacets() {
   return (
     <>

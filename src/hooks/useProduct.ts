@@ -8,10 +8,7 @@ export function productQueryKey(slug: string) {
   return ["product", slug] as const;
 }
 
-/**
- * Single product details. TanStack Query owns this server state —
- * never copy the response into Redux or local state.
- */
+
 export function useProduct(slug: string) {
   return useQuery<Product>({
     queryKey: productQueryKey(slug),

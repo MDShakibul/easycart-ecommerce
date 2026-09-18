@@ -20,11 +20,7 @@ interface Chip {
   changes: FilterChanges;
 }
 
-/**
- * Removable chips for every active facet. Each chip is a link to the same
- * listing with that one filter removed — so it works without JavaScript and
- * participates in browser history.
- */
+
 export function ActiveFilters() {
   const pathname = usePathname();
   const searchParams = useSearchParams();

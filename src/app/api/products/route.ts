@@ -17,7 +17,7 @@ function parseNumber(value: string | null): number | undefined {
   return Number.isFinite(n) ? n : undefined;
 }
 
-/** Prices must be 0 or more; non-numeric or negative values are ignored. */
+
 function parsePrice(value: string | null): number | undefined {
   const n = parseNumber(value);
   return n !== undefined && n >= 0 ? n : undefined;

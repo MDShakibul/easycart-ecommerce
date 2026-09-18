@@ -23,16 +23,7 @@ import {
 import { formatPrice } from "@/lib/format";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
-/**
- * Cart drawer (Phase 9).
- *
- * Reads the cart from Redux selectors and nothing else — no duplicated local
- * state, no product-API data. Open/close lives in CartDrawerContext, which is
- * local UI state.
- *
- * Escape-to-close and the body scroll lock are the two legitimate `useEffect`
- * cases here: both are browser APIs with no declarative equivalent.
- */
+
 export function CartDrawer() {
   const { isOpen, close } = useCartDrawer();
   const dispatch = useAppDispatch();

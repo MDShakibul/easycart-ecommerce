@@ -14,7 +14,7 @@ export function ListingSearch() {
   const [value, setValue] = useState(urlValue);
   const [lastUrlValue, setLastUrlValue] = useState(urlValue);
 
-  // Adopt external URL changes (back/forward, chip removal) during render.
+
   if (urlValue !== lastUrlValue) {
     setLastUrlValue(urlValue);
     setValue(urlValue);

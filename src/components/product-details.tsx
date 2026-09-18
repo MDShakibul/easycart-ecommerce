@@ -39,11 +39,7 @@ function formatDate(value: string): string {
   }).format(date);
 }
 
-/**
- * Product details powered by the existing product query and Redux cart.
- * Product metadata is rendered from the response; no catalog values are
- * hardcoded here.
- */
+
 export function ProductDetails({ slug }: { slug: string }) {
   const { data: product, isPending, isError, error } = useProduct(slug);
   const { data: variants } = useProductVariants(slug);

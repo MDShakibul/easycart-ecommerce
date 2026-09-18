@@ -7,10 +7,7 @@ export interface ReviewSummaryProps {
   reviewCount: number;
 }
 
-/**
- * Shows the catalog rating without fabricating a distribution from the small
- * set of written reviews embedded in a product response.
- */
+
 export function ReviewSummary({
   reviews,
   rating,

@@ -1,11 +1,7 @@
 export const FREE_SHIPPING_THRESHOLD = 50;
 export const FLAT_SHIPPING_RATE = 4.95;
 
-/**
- * Shipping cost for a cart subtotal — the single source of truth for the
- * store's shipping rule: free at or above the threshold, flat rate below.
- * Used by both the cart and checkout pages so the two never disagree.
- */
+
 export function getShippingCost(subtotal: number): number {
   return Number.isFinite(subtotal) && subtotal >= FREE_SHIPPING_THRESHOLD
     ? 0

@@ -5,10 +5,7 @@ import { ProductCardSkeleton } from "@/components/products/product-card-skeleton
 import { SectionHeading } from "@/components/ui/section-heading";
 import { useRelatedProducts } from "@/hooks/useRelatedProducts";
 
-/**
- * Related products for a details page. TanStack Query owns this server state —
- * the current product is excluded by the API, not by filtering here.
- */
+
 export function RelatedProducts({ slug }: { slug: string }) {
   const { data: products, isPending, isError } = useRelatedProducts(slug);
 

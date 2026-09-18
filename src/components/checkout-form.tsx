@@ -103,8 +103,7 @@ export function CheckoutForm() {
     );
   }
 
-  // Wait for the persisted cart to rehydrate before judging emptiness,
-  // otherwise a saved cart briefly flashes the empty state on a hard load.
+
   if (!isHydrated) {
     return (
       <div

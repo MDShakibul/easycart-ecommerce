@@ -10,14 +10,7 @@ interface CartDrawerValue {
 
 const CartDrawerContext = createContext<CartDrawerValue | null>(null);
 
-/**
- * Drawer visibility is local UI state, not URL state and not Redux.
- *
- * Adding `?cart=open` would pollute the listing param contract and force a
- * Suspense boundary onto every statically-rendered page; Redux is reserved
- * for cart contents. A context keeps it scoped and lets both the header
- * button and the drawer act on it.
- */
+
 export function CartDrawerProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 

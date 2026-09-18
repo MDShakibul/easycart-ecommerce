@@ -56,13 +56,7 @@ function CartViewSkeleton() {
   );
 }
 
-/**
- * Full cart page.
- *
- * Everything comes from the Redux cart selectors — the same store the header
- * count, cart drawer and checkout read. No local cart state, no duplicated
- * totals, no server data copied into Redux.
- */
+
 export function CartView() {
   const dispatch = useAppDispatch();
   const { toast } = useToast();
@@ -83,9 +77,7 @@ export function CartView() {
     };
   }, []);
 
-  // CartPersistence hydrates Redux from localStorage in a mount effect, so
-  // the skeleton shows only until the real cart (or a genuine empty one) is
-  // in the store — an empty cart never flashes before a saved one appears.
+
   if (!isHydrated) {
     return <CartViewSkeleton />;
   }

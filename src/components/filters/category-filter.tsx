@@ -20,10 +20,7 @@ const OPTIONS: CategoryOption[] = [
   })),
 ];
 
-/**
- * Category facet. Options are links, so filtering works without JavaScript,
- * participates in history, and stays driven entirely by `?category=`.
- */
+
 export function CategoryFilter() {
   const pathname = usePathname();
   const searchParams = useSearchParams();

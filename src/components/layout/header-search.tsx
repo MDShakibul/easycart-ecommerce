@@ -6,11 +6,7 @@ import { useState, type FormEvent } from "react";
 
 import { cn } from "@/lib/cn";
 
-/**
- * Global header search. Deliberately avoids `useSearchParams` so it can render
- * on statically-generated pages without a Suspense boundary, and so a new
- * search starts fresh rather than inheriting the current listing's filters.
- */
+
 export function HeaderSearch({ className }: { className?: string }) {
   const router = useRouter();
   const [value, setValue] = useState("");

@@ -23,11 +23,7 @@ export interface ProductResultsProps {
   limit: number;
 }
 
-/**
- * Client boundary for the listing results. TanStack Query owns
- * loading / error / success state — no duplicated local state. Every
- * parameter arrives from the URL, which remains the source of truth.
- */
+
 export function ProductResults({
   search,
   category,

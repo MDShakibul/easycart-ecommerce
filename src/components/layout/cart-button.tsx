@@ -10,10 +10,7 @@ import {
 import { formatPrice } from "@/lib/format";
 import { useAppSelector } from "@/store/hooks";
 
-/**
- * Header cart trigger — always renders as a pill showing item count + total.
- * Opens the cart drawer; the drawer links through to the full `/cart` page.
- */
+
 export function CartButton() {
   const itemCount = useAppSelector(selectCartItemCount);
   const total = useAppSelector(selectCartTotal);

@@ -37,9 +37,6 @@
 - [Responsive Design & Accessibility](#-responsive-design--accessibility)
 - [Error & Loading States](#-error--loading-states)
 - [Key Engineering Decisions](#-key-engineering-decisions)
-- [Future Roadmap](#-future-roadmap)
-- [License & Author](#-license--author)
-
 ---
 
 ## 🌟 Overview

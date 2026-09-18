@@ -13,10 +13,7 @@ function normalize(value: string | undefined): string {
   return (value ?? "").trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-/**
- * Gets a family only when the title has a clear final comma-separated option.
- * The family is still validated against brand and category by the matcher.
- */
+
 export function getProductFamilyInfo(
   product: FamilySource,
 ): ProductFamilyInfo | null {
